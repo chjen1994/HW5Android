@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         start = findViewById(R.id.newGameButton);
         enter = findViewById(R.id.enterText);
 
-        controller = new Controller(this);
+        controller = new Cli_controller(this);
 
         start.setOnClickListener(view -> {
             controller.sendNewGameMessage();
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onPause() {
         super.onPause();
@@ -60,12 +61,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {
         super.onResume();
         showToast("connecting to server");
         if(!controller.isConnected()) {
-            controller.connect("192.168.1.169",12345);
+            controller.connect("100.124.98.212",1234);
         }
     }
 

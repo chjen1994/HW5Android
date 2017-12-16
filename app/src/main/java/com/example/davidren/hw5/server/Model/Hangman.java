@@ -8,6 +8,7 @@ public class Hangman {
     private String word;
     private int life;
     private boolean win;
+    private boolean check = false;
     private char[] dash;
 
 
@@ -42,20 +43,24 @@ public class Hangman {
                     dash[i] = word.charAt(i);
                 }
                 win = true;
+                check = true;
             }
         } else {
             for (int i = 0; i < dash.length; i++) {
                 if (word.charAt(i) == guess.charAt(0)) {
                     dash[i] = guess.charAt(0);
+                    check = true;
                 }
             }
         }
-
+        if (check != true){
+            life--;
+        }
         if (isWordSolved()) {
             win = true;
         }
         //if guess not right
-        life--;
+        check = false;
     }
 
     @Override
